@@ -1,0 +1,18 @@
+{% if obj %}
+{% for i in obj %}
+{% comment %} {% if i.Day == 'mon' %} {% endcomment %}
+{{i.name}}<br>
+{{i.sets}} X {{i.reps}}<br>
+{{i.Day}}<br>
+{% comment %} {% endif %} {% endcomment %}
+{% endfor %}
+{% else %}
+<a href={% url 'main_page_view' 'mon' %}>Monday</a><br>
+<a href={% url 'main_page_view' 'tue' %}>Tuesday</a><br>
+
+<a href={% url 'main_page_view' 'wed' %}>Wednesday</a><br>
+<a href={% url 'main_page_view' 'thur' %}>Thursday</a><br>
+<a href={% url 'main_page_view' 'fri' %}>Friday</a><br>
+<a href={% url 'main_page_view' 'sat' %}>Saturday</a><br>
+
+{% endif %}
