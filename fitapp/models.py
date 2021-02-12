@@ -27,13 +27,15 @@ class Workout(models.Model):
     Thursday = 'thursday'
     Friday = 'friday'
     Saturday = 'saturday'
+    Sunday = 'sunday'
     DAY_CHOICES = [
         (Monday, 'Monday'),
         (Tuesday, 'Tuesday'),
         (Wednesday, 'Wednesday'),
         (Thursday, 'Thursday'),
         (Friday, 'Friday'),
-        (Saturday, 'Saturday')
+        (Saturday, 'Saturday'),
+        (Sunday, 'Sunday')
     ]
     Day = models.CharField(
         max_length=10,

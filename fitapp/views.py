@@ -27,12 +27,17 @@ def update(request,id):
     form=WorkoutForm(request.POST or None,request.FILES,instance=obj)
     if form.is_valid():
         form.save()
-        return redirect('/')
+        slug_ = obj.slug
+        obj1=Workout.objects.all().filter(slug=slug_)
+        return render(request,'main_page.html',{'obj':obj1,'slug':slug_})
     return render(request,'update.html',{'form':form,'obj':obj})
 
 def delete(request,id):
     if request.method == 'POST':
         obj = Workout.objects.get(id=id)
+        slug_ = obj.slug
         obj.delete()
-        return redirect('/')
+        
+        obj1 = Workout.objects.all().filter(slug=slug_)
+        return render(request,'main_page.html',{'obj':obj1,'slug':slug_})
     return render(request,'delete.html')
