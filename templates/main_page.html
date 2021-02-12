@@ -1,18 +1,43 @@
 {% if obj %}
+<h1>{{slug|title}}</h1>
 {% for i in obj %}
 {% comment %} {% if i.Day == 'mon' %} {% endcomment %}
-{{i.name}}<br>
+{{i.name}} &nbsp;
 {{i.sets}} X {{i.reps}}<br>
-{{i.Day}}<br>
+
+<a href="{% url 'update' i.id %}">Update</a>
+<a href="{% url 'delete' i.id %}">Delete</a><br>
+
 {% comment %} {% endif %} {% endcomment %}
 {% endfor %}
 {% else %}
-<a href={% url 'main_page_view' 'mon' %}>Monday</a><br>
-<a href={% url 'main_page_view' 'tue' %}>Tuesday</a><br>
+<a href={% url 'main_page_view' 'monday' %}>Monday</a><br>
+<a href={% url 'main_page_view' 'tuesday' %}>Tuesday</a><br>
 
-<a href={% url 'main_page_view' 'wed' %}>Wednesday</a><br>
-<a href={% url 'main_page_view' 'thur' %}>Thursday</a><br>
-<a href={% url 'main_page_view' 'fri' %}>Friday</a><br>
-<a href={% url 'main_page_view' 'sat' %}>Saturday</a><br>
+<a href={% url 'main_page_view' 'wednesday' %}>Wednesday</a><br>
+<a href={% url 'main_page_view' 'thursday' %}>Thursday</a><br>
+<a href={% url 'main_page_view' 'friday' %}>Friday</a><br>
+<a href={% url 'main_page_view' 'saturday' %}>Saturday</a><br>
+<form action="{% url 'add_workout' %}" method="post" enctype="multipart/form-data">
+{% csrf_token %}
 
+
+<input type="hidden" name='day' value="{{slug}}">
+<input type='text' name='name' placeholder='name'>
+<input type='text' name='sets' placeholder='sets'>
+<input type='text' name='reps' placeholder='reps'>
+<input type='submit' value='add'>
+</form>
+{% endif %}
+{% if obj %}
+<form action="{% url 'add_workout' %}" method="post" enctype="multipart/form-data">
+{% csrf_token %}
+
+
+<input type="hidden" name='day' value="{{slug}}">
+<input type='text' name='name' placeholder='name'>
+<input type='text' name='sets' placeholder='sets'>
+<input type='text' name='reps' placeholder='reps'>
+<input type='submit' value='add'>
+</form>
 {% endif %}

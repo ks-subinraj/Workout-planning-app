@@ -21,12 +21,12 @@ from django.db import models
 
 class Workout(models.Model):
     # day = models.ForeignKey('Day',on_delete=models.CASCADE)
-    Monday = 'mon'
-    Tuesday = 'Tue'
-    Wednesday = 'Wed'
-    Thursday = 'Thur'
-    Friday = 'Fri'
-    Saturday = 'Sat'
+    Monday = 'monday'
+    Tuesday = 'tuesday'
+    Wednesday = 'wednesday'
+    Thursday = 'thursday'
+    Friday = 'friday'
+    Saturday = 'saturday'
     DAY_CHOICES = [
         (Monday, 'Monday'),
         (Tuesday, 'Tuesday'),
@@ -36,7 +36,7 @@ class Workout(models.Model):
         (Saturday, 'Saturday')
     ]
     Day = models.CharField(
-        max_length=4,
+        max_length=10,
         choices=DAY_CHOICES,
         default=1,
     )
